@@ -72,7 +72,7 @@ async function seed() {
       );
     }
 
-    console.log("Seed completed ✅");
+    console.log("Seed completed");
   } catch (err) {
     console.error(err);
   } finally {
@@ -98,7 +98,7 @@ app.get("/transactions", async (req, res) => {
   }
 });
 
-// PORT setup (local + Render)
+// PORT setup
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
