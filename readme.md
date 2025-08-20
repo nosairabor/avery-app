@@ -2,92 +2,61 @@
 
 A Node.js API with PostgreSQL database and Google Apps Script integration for tracking cash flow in Google Sheets.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Setup Instructions](#setup-instructions)
-  - [1. Run the Node.js API](#1-run-the-nodejs-api)
-  - [2. Attach Apps Script to Google Sheet](#2-attach-apps-script-to-google-sheet)
-  - [3. Test the Workflow](#3-test-the-workflow)
-- [API Endpoints](#api-endpoints)
-- [Notes](#notes)
-
 ## Overview
 
-This project provides a complete cash flow tracking solution that combines:
-- **Node.js API** - Backend server for handling transactions
-- **PostgreSQL Database** - Data storage
-- **Google Apps Script** - Integration with Google Sheets for real-time updates
+This project demonstrates a complete cash flow tracking solution with:
+- **Node.js API** - Backend server handling transactions
+- **PostgreSQL Database** - Hosted data storage  
+- **Google Apps Script** - Real-time Google Sheets integration
 
 ## Prerequisites
 
-Before getting started, ensure you have:
-- [Node.js](https://nodejs.org/) installed on your system
-- PostgreSQL database set up
-- Google account with access to Google Sheets
-- [Google Apps Script CLI (clasp)](https://github.com/google/clasp) installed globally:
+- [Node.js](https://nodejs.org/) installed
+- Google account with Google Sheets access
+- [Google Apps Script CLI (clasp)](https://github.com/google/clasp):
   ```bash
   npm install -g @google/clasp
   ```
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/nosairabor/avery-app
-   cd <YOUR_PROJECT_FOLDER>
+```bash
+git clone https://github.com/nosairabor/avery-app
+cd avery-app
+npm install
+```
+
+## Instructions
+
+### Run the Node.js API
+
+Start the local server:
+```bash
+node index.js
+```
+
+The API will be available at `http://localhost:3000`
+
+### Attach the Apps Script to a Google Sheet
+
+1. Open your Google Sheet and copy the Sheet ID from the URL:
+   ```
+   https://docs.google.com/spreadsheets/d/SHEET_ID_HERE/edit
    ```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Setup Instructions
-
-### 1. Run the Node.js API
-
-1. Start the server:
-   ```bash
-   node index.js
-   ```
-
-
-### 2. Attach Apps Script to Google Sheet
-
-1. Open your Google Sheet in the browser and copy the Sheet ID from the URL:
-  
-
-2. Login to Google Apps Script CLI:
+2. Login and create the Apps Script:
    ```bash
    clasp login
+   clasp create --type sheets --title "Cash Flow Script" --parentId SHEET_ID_HERE
    ```
 
-3. Create and bind the script to your sheet:
-   ```bash
-   clasp create --type sheets --title "Cash Flow Script" --parentId SPREADSHEET_ID
-   ```
+### Test the Workflow
 
-   This will:
-   - Bind the script to your Google Sheet
-   - Generate an `appsscript.json` manifest file
+Test the API endpoints on Postman or a browser:
+- **Local**: `http://localhost:3000/transactions`
+- **Live**: `https://avery-app-ai.onrender.com/transactions`
 
-### 3. Test the Workflow
-
-#### Local Testing
-You can test the local API using Postman or any API client by sending a GET request to:
-`http://localhost:3000/transactions`
-
-#### Production Testing
-Alternatively, test using the live endpoint in your browser or by using Postman:
-`https://avery-app-ai.onrender.com/transactions`
-
-
-#### Verify Google Sheets Integration
-1. Check that your Google Sheet updates correctly
-2. Ensure the attached Apps Script is functioning properly
+Verify that your Google Sheet updates automatically when transactions are retrieved.
 
 ## API Endpoints
 
@@ -97,9 +66,6 @@ Alternatively, test using the live endpoint in your browser or by using Postman:
 
 ## Notes
 
-- **Order matters**: Follow the setup steps in sequence:
-  1. Run API → 2. Attach script → 3. Test workflow
-- Ensure Node.js version is compatible with the project requirements
-- Make sure `clasp` is logged into your Google account before attaching the script
-- The Google Apps Script will automatically sync data between the API and your Google Sheet
-
+- Follow setup steps in order: API → Apps Script → Test
+- Ensure `clasp` is logged into your Google account
+- The Apps Script automatically syncs data between API and Google Sheets
