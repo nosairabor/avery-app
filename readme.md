@@ -81,16 +81,13 @@ Before getting started, ensure you have:
 ### 3. Test the Workflow
 
 #### Local Testing
-Send a GET request to test the local API:
-```bash
-curl http://localhost:3000/transactions
-```
+You can test the local API using Postman or any API client by sending a GET request to:
+`http://localhost:3000/transactions`
 
 #### Production Testing
-Alternatively, test using the live endpoint:
-```bash
-curl https://avery-app-ai.onrender.com/transactions
-```
+Alternatively, test using the live endpoint in your browser or by using Postman:
+`https://avery-app-ai.onrender.com/transactions`
+
 
 #### Verify Google Sheets Integration
 1. Check that your Google Sheet updates correctly
