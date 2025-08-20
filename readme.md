@@ -54,10 +54,6 @@ Before getting started, ensure you have:
    node index.js
    ```
 
-2. Verify the API is running at:
-   ```
-   http://localhost:3000
-   ```
 
 ### 2. Attach Apps Script to Google Sheet
 
